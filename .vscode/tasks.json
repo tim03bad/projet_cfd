@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: cl.exe build active file (SFML)",
+            "command": "cl.exe",
+            "args": [
+                "/Zi",                     // Génère les infos de debug
+                "/EHsc",                   // Gestion des exceptions
+                "/std:c++17",              // Active C++17 (obligatoire pour SFML 3.1.0)
+                "/nologo",                 // Désactive le logo Microsoft
+                "/Fe${fileDirname}\\${fileBasenameNoExtension}.exe", // Nom de l'exécutable
+                "${file}",                 // Fichier source
+                "/I", "C:/SFML-3.1.0/include", // Chemin des includes SFML
+                "/link",                   // Début des options de linkage
+                "sfml-graphics.lib",       // Bibliothèques SFML à lier
+                "sfml-window.lib",
+                "sfml-system.lib",
+                "/LIBPATH:\"C:/SFML-3.1.0/lib\""  // Chemin des .lib (x64)
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": ["$msCompile"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compilation avec SFML (x64) et linkage des bibliothèques"
+        }
+    ]
+}
