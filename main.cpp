@@ -7,7 +7,7 @@
 int main()
 {
     Maille* maille = new Maille();
-    maille->construction_maille();
+    maille->construction_maille(20,30,30);
 
     std::vector<Element*> ptr_elements;
     int nb_element;
@@ -31,7 +31,7 @@ int main()
         for (int j=0; j<3; j++) {
             Noeud* ptr_noeud;
             ptr_noeud = ptr_noeuds[j];
-            triangle->setPoint(j, sf::Vector2f(ptr_noeud->get_x(), ptr_noeud->get_y()));
+            triangle->setPoint(j, sf::Vector2f(ptr_noeud->get_y(), ptr_noeud->get_x()));
         }
 
         // Définir la couleur de remplissage et la couleur des bords

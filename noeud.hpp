@@ -3,13 +3,14 @@
 
 #include <iostream>
 #include <vector>
+#include "element.hpp"
 
 class Noeud {
 private:
     double x;
     double y;
     int nb_knot;
-    std::vector<Noeud*> ptr_voisins;
+    std::vector<Element*> ptr_voisins;
     int nb_voisins;
 
 public:
@@ -33,13 +34,17 @@ public:
         return nb_knot;
     }
 
-    std::vector<Noeud*> get_ptr_voisins() {
+    std::vector<Element*> get_ptr_voisins() {
         return ptr_voisins;
     }
 
     int get_nb_voisins() {
         return nb_voisins;
     }
+
+    void lien_element(Element* ptr_voisin) {
+        ptr_voisins.push_back(ptr_voisin);
+    } 
 
     void display() {
         std::cout << "Nb: " << nb_knot << "   x: " << x << "   y: " << y << std::endl;
