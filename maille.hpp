@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <Eigen/Dense>
 #include <cmath>
 #include <algorithm>
 #include <unordered_set> // Pour optimiser la recherche d'intersection
@@ -277,8 +278,22 @@ public:
         }
     }
 
-    void Nu() {
-        
+    Eigen::MatrixXd Nu() {
+        int size = nb_noeud * 2;
+        Eigen::MatrixXd Nu_matrix = Eigen::MatrixXd::Zero(size, size);
+
+        for (int i = 0; i < nb_noeud; i++) {
+            for (int j = 0; j < nb_noeud; j++) {
+                double value = 0;
+                for (int l = 0; l < nb_noeud; l++) {
+                    value += U[l] * valeur_integral(ptr_noeuds[i], ptr_noeuds[j], ptr_noeuds[l], 0);
+                    value += V[l] * valeur_integral(ptr_noeuds[i], ptr_noeuds[j], ptr_noeuds[l], 1);
+                }
+                Nu_matrix(i, j) = value;
+                Nu_matrix(nb_noeud + i, nb_noeud + j) = value;
+            }
+        }
+        return Nu_matrix;
     }
 };
 
